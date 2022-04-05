@@ -24,6 +24,8 @@ const PostWrite = (props) => {
   const editPost = () => {
     dispatch(postActions.editPostFB(post_id, {contents:contents}));
   }
+
+  console.log(preview, postData);
   React.useEffect (()=> {
     if(is_edit && ! postData) {
     window.alert('포스트 정보가 없습니다');
@@ -71,8 +73,8 @@ const PostWrite = (props) => {
           <Image shape="rectangle"
           src = { preview ?
             preview : 
-            // postData.image_url ? 
-            // postData.image_url : 
+            postData && postData.image_url ? 
+            postData.image_url : 
             "https://previews.123rf.com/images/kolibrico/kolibrico2002/kolibrico200200005/139369246-vector-empty-transparent-background-vector-transparency-grid-seamless-pattern-.jpg"} />
         </Grid>
 
