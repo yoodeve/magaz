@@ -18,7 +18,7 @@ const PostWrite = (props) => {
   const {history} = props;
   
   let postData = is_edit?post_list.find((p)=>p.id===post_id):null;
-//포스트데이터안에 프리뷰
+
   const [contents, setContents] = React.useState(postData?postData.contents:'');
 
   const editPost = () => {
@@ -39,25 +39,28 @@ const PostWrite = (props) => {
     }
   },[])
 
-
   const changeContents = (e) => {
     setContents(e.target.value);
   }
 
   const addPost = () => {
+    if(!contents || !preview){
+      window.alert('게시물을 작성하세요')
+      return;
+    }
     dispatch(postActions.addPostFB(contents));
   }
 
   if(!is_login){
     return (
-      <Grid margin = "100px 0px" padding="16px" center>
+      <Grid margin = "100px 0px" padding="16px" center width="80%">
         <Text size="30px" bold>앗! 잠시</Text>
         <Text size="15px">로그인 하고 오세요 !</Text>
         <Button _onClick={()=>{history.replace("/");}}>로그인 ㄱㄱ</Button>
       </Grid>
     )}
       return <React.Fragment>
-        <Grid padding="16px">
+        <Grid padding="16px" width="80%">
           <Text margin="0px" size="36px" bold>
             {is_edit?"게시글수정":"게시글 작성"}
           </Text>
@@ -78,17 +81,28 @@ const PostWrite = (props) => {
             "https://previews.123rf.com/images/kolibrico/kolibrico2002/kolibrico200200005/139369246-vector-empty-transparent-background-vector-transparency-grid-seamless-pattern-.jpg"} />
         </Grid>
 
-        <Grid padding="16px">
+        <Grid padding="16px" width="80%">
           <Input 
           value={contents}
           _onChange={changeContents} label="게시글 내용" 
           placeholder="게시글 작성" multiLine />
         </Grid>
 
-        <Grid padding="16px">
+        <Grid padding="16px" width="80%">
           {is_edit?
-          (<Button _onClick={editPost} text="게시글 수정"></Button>):
-          (<Button _onClick={addPost} text="게시글 작성"></Button>)
+          <div>
+            <Button _onClick={editPost} text="게시글 수정" width="48%"></Button>
+            <Button _onClick={()=>{history.replace('/')}} text="뒤로가기" width="48%"></Button>
+          </div>
+          :
+          // (Image.src="https://previews.123rf.com/images/kolibrico/kolibrico2002/kolibrico200200005/139369246-vector-empty-transparent-background-vector-transparency-grid-seamless-pattern-.jpg"?
+          // (<Button text="게시물 작성하고 누르기"></Button>) :
+          (
+            <div>
+              <Button _onClick={addPost} text="게시글 작성" width="48%"></Button>
+              <Button _onClick={()=>{history.replace('/')}} text="뒤로가기" width="48%"></Button>
+            </div>
+          )
           }
         </Grid>
       </React.Fragment>

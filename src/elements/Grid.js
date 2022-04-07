@@ -2,15 +2,27 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-  const { is_flex, width, margin, padding, bg, children, center } = props;
+  const {
+    is_flex,
+    width,
+    margin,
+    padding,
+    bg,
+    children,
+    is_center,
+    is_hori,
+    t_a,
+  } = props;
 
   const styles = {
-      is_flex: is_flex,
-      width: width,
-      margin: margin,
-      padding: padding,
-      bg: bg,
-      center: center,
+    is_flex: is_flex,
+    width: width,
+    margin: margin,
+    padding: padding,
+    bg: bg,
+    is_center:is_center,
+    is_hori:is_hori,
+    t_a:t_a,
   };
   return (
     <React.Fragment>
@@ -26,7 +38,9 @@ Grid.defaultProps = {
   padding: false,
   margin: false,
   bg: false,
-  center:false,
+  t_a:false,
+  is_center:false,
+  is_hori:false,
 };
 
 const GridBox = styled.div`
@@ -40,7 +54,24 @@ const GridBox = styled.div`
     props.is_flex
       ? `display: flex; align-items: center; justify-content: space-between; `
       : ""}
-  ${(props)=>props.center?`text-align:center;` : ''}
+
+  ${(props) =>
+    props.is_center
+      ? `display: grid; align-items: center; justify-content: center; `
+      : ""}
+  
+  ${(props) =>
+    props.is_hori
+      ? `display: center; align-items: center; justify-content: center; `
+      : ""}
+      ${(props) =>
+    props.t_a
+      ? `text-align:center; `
+      : ""}
+  
+  /* ${(props) => (props.center ? `text-align:center;` : "")}
+  ${(props) => (props.justifyCon ? `justify-content: center;` : "")}
+  ${(props) => (props.display ? `display: flex;` : "")} */
 `;
 
 export default Grid;

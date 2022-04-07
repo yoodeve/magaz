@@ -41,14 +41,16 @@ const ImageDfault = styled.div`
     width: var(--size);
     height: var(--size);
     background-image: url("${(props) => props.src}");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover 100% 100%;
 `
 
 const AspectOutter = styled.div`
-    max-width: 100%;
+    max-width: 80%;
     min-width: 250px;
     height: auto;
-    object-fit: scale-down;
+    object-fit: cover;
 `;
 
 const AspectInner = styled.div`
@@ -56,7 +58,9 @@ const AspectInner = styled.div`
     padding-top: 75%;
     overflow: hidden;
     background-image: url("${(props) => props.src}");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 `;
 
 const ImageCircle = styled.div`
@@ -66,7 +70,9 @@ const ImageCircle = styled.div`
     border-radius: var(--size);
 
     background-image: url("${(props) => props.src}");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover 100% 100%;
     margin: 4px;
 `;
 

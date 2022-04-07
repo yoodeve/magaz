@@ -1,4 +1,5 @@
 import "./App.css";
+import "../index.css";
 import React from "react";
 
 import { BrowserRouter, Route } from "react-router-dom";
@@ -13,7 +14,7 @@ import PostDetail from "../pages/PostDetail";
 import Notifi from '../pages/Notification';
 
 import Header from "../components/Header";
-import { Grid, Button } from "../elements";
+import { Grid, Button, Margin } from "../elements";
 import Permit from "./Permit";
 
 // eslint-disable-next-line
@@ -36,7 +37,6 @@ function App() {
 
   return (
     <React.Fragment>
-      <Grid>
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
@@ -46,8 +46,7 @@ function App() {
           <Route path="/write/:id" exact component={PostWrite}/>
           <Route path="/post/:id" exact component={PostDetail}/>
           <Route path="/alert" exact component={Notifi}/>
-        </ConnectedRouter>
-      </Grid>
+        </ConnectedRouter>      
       <Permit>
         <Button is_float text="+" _onClick={()=>{history.push("/write");}}></Button>
       </Permit>

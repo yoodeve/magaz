@@ -21,17 +21,18 @@ const Header = (props) => {
   if (is_login && is_session) {
     return (
       <React.Fragment>
-        <Grid is_flex padding="4px 16px">
+        <Grid is_hori>
+          <Grid is_flex padding="4px 16px" width="100%">
           <Grid>
-            <Text margin="0px" size="24px" bold>
-              헬로
+            <Text color="#362706" margin="0px" size="24px" bold t_a>
+              취향매거진
             </Text>
           </Grid>
 
           <Grid is_flex>
-            <Button text="내정보"></Button>
-            <Button text="알림" _onClick={()=>{history.push('/alert')}}></Button>
-            <Button
+            <Button text="내정보" margin="2px"></Button>
+            <Button text="알림" margin="2px" _onClick={()=>{history.push('/alert')}}></Button>
+            <Button margin="2px"
               text="로그아웃"
               _onClick={() => {
                 dispatch(userActions.logoutFB());
@@ -39,16 +40,17 @@ const Header = (props) => {
             ></Button>
           </Grid>
         </Grid>
+        </Grid>
       </React.Fragment>
     );
   }
 
   return (
     <React.Fragment>
-      <Grid is_flex padding="4px 16px">
+      <Grid is_flex padding="4px 16px" width="100%">
         <Grid>
           <Text margin="0px" size="24px" bold>
-            헬로
+            취향매거진
           </Text>
         </Grid>
 
